@@ -2,13 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using [2people](https://2people.io) team usual project architecture.
 
-![2people logo](https://2people.io/assets/logo.svg)
+[![2people logo](https://2people.io/assets/logo.svg)](https://2people.io)
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -16,12 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -30,6 +25,14 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn st`
+
+Creates type declaration for all scss modules in project
+
+### `yarn lint`
+
+Runs `eslint` on all files
 
 ## Directory structure
 
@@ -45,7 +48,7 @@ src/
 ├─ components/
 │  ├─ blocks
 │  │  ├─ ComplexComponent
-│  │  │  ├─ index.js
+│  │  │  ├─ index.tsx
 │  │  │  ├─ SomeChildComponent.tsx
 │  │  │  └─ style.module.scss
 │  ├─ buttons
@@ -55,24 +58,22 @@ src/
 │  ├─ forms
 │  └─ ...
 ├─ consts/
-│  ├─ someHelper.js
-│  ├─ ...
-│  └─ index.js
+│  ├─ someConst.ts
+│  └─ ...
 ├─ helpers/
-│  └─ index.js
+│  ├─ someHelper.ts
+│  └─ ...
 ├─ hooks/
 │  ├─ api/
-│  │  ├─ useSomeApi.js
-│  │  ├─ ...
-│  │  └─ index.js
+│  │  ├─ useSomeApi.ts
+│  │  └─ ...
 │  └─ ...
 ├─ middlewares/
 ├─ queries/
 │  ├─ someService/
-│  │  ├─ getSomething.js
-│  │  ├─ postSomething.js
-│  │  ├─ ...
-│  │  └─ index.js
+│  │  ├─ getSomething.ts
+│  │  ├─ postSomething.ts
+│  │  └─ ...
 │  └─ ...
 ├─ reducers/
 ├─ schemas/
@@ -80,8 +81,8 @@ src/
 ├─ selectors/
 ├─ validators/
 ├─ App.tsx
-├─ configureStore.js
-└─ index.js
+├─ configureStore.ts
+└─ index.ts
 ```
 
 ### src/assets
@@ -98,11 +99,11 @@ Example of subdirectory in components. Can have more subdirectories (e.g. compon
 
 #### src/components/blocks/Component
 
-Directory with any React component. Every directory has _index.js_ file with logic and _style.module.scss_ file with styles. Can have _ChildComponent.js_ files, if main component is complex and child components aren't reused somewhere in project.
+Directory with any React component. Every directory has _index.tsx_ file with logic and _style.module.scss_ file with styles. Can have _ChildComponent.tsx_ files, if main component is complex and child components aren't reused somewhere in project.
 
 ### src/consts
 
-Directory with project constants. Has _index.js_ file with list of consts, which must be exported as single object. Can have more files for complex consts (e.g. long arrays/objects), but they still should be exported in index file.
+Directory with project constants.
 
 ### src/consts/endpoints
 
@@ -114,11 +115,11 @@ File for all routes in project. They are created as functions, which return rout
 
 ### src/helpers
 
-Directory with helper functions. There should be all functions placed, which are reused/can be reused in project. Every helper has single js file (e.g. _someHelper.js_). All helpers should be exported in _index.js_ file.
+Directory with helper functions. There should be all functions placed, which are reused/can be reused in project. Every helper has single js file (e.g. _someHelper.ts_).
 
 ### src/hooks
 
-Directory with React hooks. Every hook has single js file (e.g. _someHook.js_). All hooks should be exported in _index.js_ file.
+Directory with React hooks. Every hook has single js file (e.g. _someHook.ts_).
 
 #### src/hooks/api
 
@@ -129,11 +130,11 @@ Subdirectory with api hooks. Api hook is a pattern for building api interactions
 
 ### src/middlewares
 
-Directory with Redux middlewares. Every middleware has single js file (e.g. _someMiddleware.js_). All middlewares should be exported in _index.js_ file.
+Directory with Redux middlewares. Every middleware has single js file (e.g. _someMiddleware.ts_).
 
 ### src/queries
 
-Directory with configs for api queries. All query config files are in subdirectories by resource they get (e.g. _user_) or by project global sections (e.g. _settings_). Subdirectory has many query config files, which names starts with query type (e.g. _getUser.js_). All query config files by subdirectory should be exported in _index.js_ file. Config documentation can be found in [redux-query](https://github.com/amplitude/redux-query) library documentation.
+Directory with configs for api queries. All query config files are in subdirectories by resource they get (e.g. _user_) or by project global sections (e.g. _settings_). Subdirectory has many query config files, which names starts with query type (e.g. _getUser.ts_). Config documentation can be found in [redux-query](https://github.com/amplitude/redux-query) library documentation.
 
 Query config file in this project architecture is more than just config - it is a function, which gets arguments and makes action (e.g. _requestAsync_). All action types can be also found in redux-query documentation.
 
@@ -143,7 +144,7 @@ Directory with Redux reducers.
 
 ### src/schemas
 
-Directory with normalizr schemas. Every schema has single js file (e.g. _users.js_). Every schema should export _schema_ and _schemasArray_. Key should be similar as filename. All schemas should be exported in _index.js_ file.
+Directory with normalizr schemas. Every schema has single js file (e.g. _users.ts_). Every schema should export _schema_ and _schemasArray_. Key should be similar as filename.
 
 ### src/screens
 
@@ -157,14 +158,14 @@ Directory with selectors, made by [reselect](https://github.com/reduxjs/reselect
 
 Directory with validators for [redux-form](https://redux-form.com/8.1.0/docs/api/reduxform.md/).
 
-### src/App.js
+### src/App.ts
 
 Main file with all global routes and other stuff.
 
-### src/configureStore.js
+### src/configureStore.ts
 
 File with Redux configuration. Exporting Redux _store_ and React Router _history_.
 
-### src/index.js
+### src/index.ts
 
 Project entrypoint.

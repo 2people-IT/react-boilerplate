@@ -116,7 +116,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "st": "yarn tsm src/ -i src/assets"
+    "st": "yarn tsm src/ -i src/assets",
+    "lint": "yarn eslint . --fix"
   },
   "browserslist": {
     "production": [
