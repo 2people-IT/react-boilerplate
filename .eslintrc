@@ -1,0 +1,48 @@
+{
+  "plugins": [
+    "react-hooks",
+    "prettier"
+  ],
+  "extends": [
+    "react-app",
+    "airbnb",
+    "prettier"
+  ],
+  "ignorePatterns": [
+    "config",
+    "scripts"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "paths": [
+          "src"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/forbid-prop-types": "off",
+    "no-nested-ternary": "warn",
+    "import/no-unresolved": "warn",
+    "no-throw-literal": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
+    "react/require-default-props": "off",
+    "import/extensions": "off"
+  }
+}
