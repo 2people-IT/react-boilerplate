@@ -1,13 +1,11 @@
-import { normalize } from 'normalizr';
 import endpoints from 'consts/endpoints';
 import { requestAsync } from 'redux-query';
-import posts from 'schemas/posts';
 
 export default ({ redditName = 'reactjs', resultKey = 'posts' } = {}) =>
   requestAsync({
     url: endpoints.getRedditUrl({ redditName }),
     transform: (response) => ({
-      [resultKey]: normalize(response.data.children, posts.schemasArray),
+      [resultKey]: response.data.children,
     }),
     queryKey: endpoints.getRedditUrl(),
     // meta: {

@@ -26,10 +26,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn st`
-
-Creates type declaration for all scss modules in project
-
 ### `yarn lint`
 
 Runs `eslint` on all files
@@ -43,18 +39,12 @@ Project has default [CRA](https://github.com/facebook/create-react-app) structur
 ```
 src/
 ├─ assets/
-│  ├─ ...
-│  └─ main.scss
+│  └─ ...
 ├─ components/
 │  ├─ blocks
-│  │  ├─ ComplexComponent
-│  │  │  ├─ index.tsx
-│  │  │  ├─ SomeChildComponent.tsx
-│  │  │  └─ style.module.scss
+│  │  └─ ComplexComponent.tsx
 │  ├─ buttons
-│  │  ├─ BasicButton
-│  │  │  ├─ index.tsx
-│  │  │  └─ style.module.scss
+│  │  └─ BasicButton.tsx
 │  ├─ forms
 │  └─ ...
 ├─ consts/
@@ -78,7 +68,6 @@ src/
 ├─ reducers/
 ├─ schemas/
 ├─ screens/
-├─ selectors/
 ├─ validators/
 ├─ App.tsx
 ├─ configureStore.ts
@@ -87,7 +76,7 @@ src/
 
 ### src/assets
 
-Directory where all assets must be placed. Usually has _fonts_ and _img_ subdirectories. Also here are located all global scss files, including _main.scss_ (webpack styles entrypoint) and different _extend_ files (keyframes, fonts, variables, etc.). Extend files names must begin from _.
+Directory where all assets must be placed. Usually has _fonts_ and _img_ subdirectories.
 
 ### src/components
 
@@ -96,10 +85,6 @@ Directory with all React components. Has many subdirectories (blocks, buttons, f
 #### src/components/blocks
 
 Example of subdirectory in components. Can have more subdirectories (e.g. components/blocks/auth - here must be all specific auth blocks placed).
-
-#### src/components/blocks/Component
-
-Directory with any React component. Every directory has _index.tsx_ file with logic and _style.module.scss_ file with styles. Can have _ChildComponent.tsx_ files, if main component is complex and child components aren't reused somewhere in project.
 
 ### src/consts
 
@@ -142,17 +127,9 @@ Query config file in this project architecture is more than just config - it is 
 
 Directory with Redux reducers.
 
-### src/schemas
-
-Directory with normalizr schemas. Every schema has single js file (e.g. _users.ts_). Every schema should export _schema_ and _schemasArray_. Key should be similar as filename.
-
 ### src/screens
 
-Directory with all screens in project. Every subdirectory is either single screen, or group of strings with wrapper, with handles all routes of group and has visual wrapper, if screen group needs it. Every single screen is in directory and most of the time also has _style.module.scss_ file.
-
-### src/selectors
-
-Directory with selectors, made by [reselect](https://github.com/reduxjs/reselect).
+Directory with all screens in project. 
 
 ### src/validators (_optional, if redux-form or smthg similar is used in project_)
 

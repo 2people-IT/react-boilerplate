@@ -1,35 +1,34 @@
-import { useMemo } from 'react';
-import { bindActionCreators } from 'redux';
-import endpoints from 'consts/endpoints';
-import { querySelectors } from 'redux-query';
+import { useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRedditPosts } from 'selectors';
 import getReddit from 'queries/reddit/getReddit';
+import useActionsWithFetchingState from '../useActionsWithFetchingState';
+import { arraySelector } from './selectors';
 
 const useReddit = () => {
-  const redditState = useSelector((state) => ({
-    redditPosts: getRedditPosts(state, 'posts'),
-    redditIsFetching: querySelectors.isPending(state.queries, {
-      url: endpoints.getRedditUrl(),
+  const selector = useCallback(
+    (state) => ({
+      redditPosts: arraySelector(state, 'posts'),
     }),
-  }));
+    [],
+  );
 
   const dispatch = useDispatch();
 
-  const actions = useMemo(
-    () =>
-      bindActionCreators(
-        {
-          getReddit,
-        },
-        dispatch,
-      ),
-    [dispatch],
+  const data = useSelector(selector);
+
+  const actionCreators = useMemo(
+    () => ({
+      getReddit,
+    }),
+    [],
   );
 
+  const [actions, isFetchingState] = useActionsWithFetchingState(actionCreators, dispatch);
+
   return {
-    ...redditState,
+    ...data,
     ...actions,
+    ...isFetchingState,
   };
 };
 

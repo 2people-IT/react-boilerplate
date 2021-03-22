@@ -1,11 +1,23 @@
 import React, { useCallback, useEffect } from 'react';
 
-import BasicButton from 'components/buttons/BasicButton';
+import { createUseStyles } from 'react-jss';
 import useReddit from 'hooks/api/useReddit';
-import styles from './style.module.scss';
+
+const useStyles = createUseStyles({
+  screen: {
+    background: 'aliceblue',
+    padding: 10,
+    '@media (max-width: 1280px)': {
+      background: 'green',
+    },
+  },
+  post: {
+    padding: '15px 0',
+  },
+});
 
 const HomeScreen = () => {
-  const { redditPosts, getReddit, redditIsFetching } = useReddit();
+  const { redditPosts, getReddit, getRedditIsFetching } = useReddit();
   const getReactReddit = useCallback(() => {
     console.log('smthg');
     getReddit({ redditName: 'reactjs' });
@@ -14,23 +26,16 @@ const HomeScreen = () => {
   useEffect(() => {
     getReactReddit();
   }, []);
-
-  const postStyle: React.CSSProperties = {
-    padding: '15px 0',
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    maxWidth: 100,
-  };
+  const styles = useStyles();
 
   console.log('rerender');
 
   return (
-    <div className={styles.homeScreen}>
-      <BasicButton text="Click me" onClick={getReactReddit} style={buttonStyle} isLoading={redditIsFetching} />
+    <div className={styles.screen}>
+      <button onClick={getReactReddit}>{getRedditIsFetching ? 'loading' : 'Click me'}</button>
       {redditPosts.map((post) => (
-        <div key={post.id} style={postStyle}>
-          {post.title}
+        <div key={post.data.id} className={styles.post}>
+          {post.data.title}
         </div>
       ))}
     </div>
